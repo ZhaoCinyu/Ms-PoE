@@ -1,50 +1,16 @@
+
+MODELNAME="meta-llama/Meta-Llama-3-8B-Instruct"
+# MODELNAME="lmsys/vicuna-7b-v1.5"
+# MODELNAME="Qwen/Qwen2-7B-Instruct"
+OUTPUTNAME="mdqa_results/llama3_8b-10doc-answer1.jsonl"
+# OUTPUTNAME="mdqa_results/ours-vicuna_7b-10doc-answer1.jsonl"
+# OUTPUTNAME="mdqa_results/ours-qwen_7b-10doc-answer1-ratio1.2to1.8.jsonl"
+
 CUDA_VISIBLE_DEVICES=0 python -u inference.py \
     --input_path data/mdqa_10documents.jsonl.gz \
-    --output_path mdqa_results/baseline-vicuna_7b-10doc-answer1.jsonl \
-    --model_name lmsys/vicuna-7b-v1.5 \
+    --output_path $OUTPUTNAME \
+    --model_name $MODELNAME \
     --seed 42 \
-    --sample_num 500 \
+    --sample_num 5 \
     --answer_idx 1
-python -u utils/lost_in_the_middle/eval_qa_response.py --input-path mdqa_results/baseline-vicuna_7b-10doc-answer1.jsonl
-
-
-CUDA_VISIBLE_DEVICES=0 python -u inference.py \
-    --input_path data/mdqa_10documents.jsonl.gz \
-    --output_path mdqa_results/baseline-vicuna_7b-10doc-answer3.jsonl \
-    --model_name lmsys/vicuna-7b-v1.5 \
-    --seed 42 \
-    --sample_num 500 \
-    --answer_idx 3
-python -u utils/lost_in_the_middle/eval_qa_response.py --input-path mdqa_results/baseline-vicuna_7b-10doc-answer3.jsonl
-
-
-CUDA_VISIBLE_DEVICES=0 python -u inference.py \
-    --input_path data/mdqa_10documents.jsonl.gz \
-    --output_path mdqa_results/baseline-vicuna_7b-10doc-answer5.jsonl \
-    --model_name lmsys/vicuna-7b-v1.5 \
-    --seed 42 \
-    --sample_num 500 \
-    --answer_idx 5
-python -u utils/lost_in_the_middle/eval_qa_response.py --input-path mdqa_results/baseline-vicuna_7b-10doc-answer5.jsonl
-
-
-CUDA_VISIBLE_DEVICES=0 python -u inference.py \
-    --input_path data/mdqa_10documents.jsonl.gz \
-    --output_path mdqa_results/baseline-vicuna_7b-10doc-answer7.jsonl \
-    --model_name lmsys/vicuna-7b-v1.5 \
-    --seed 42 \
-    --sample_num 500 \
-    --answer_idx 7
-python -u utils/lost_in_the_middle/eval_qa_response.py --input-path mdqa_results/baseline-vicuna_7b-10doc-answer7.jsonl
-
-
-CUDA_VISIBLE_DEVICES=0 python -u inference.py \
-    --input_path data/mdqa_10documents.jsonl.gz \
-    --output_path mdqa_results/baseline-vicuna_7b-10doc-answer10.jsonl \
-    --model_name lmsys/vicuna-7b-v1.5 \
-    --seed 42 \
-    --sample_num 500 \
-    --answer_idx 10
-python -u utils/lost_in_the_middle/eval_qa_response.py --input-path mdqa_results/baseline-vicuna_7b-10doc-answer10.jsonl
-
-
+python -u utils/lost_in_the_middle/eval_qa_response.py --input-path $OUTPUTNAME
