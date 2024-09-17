@@ -5,7 +5,7 @@ import torch
 
 from transformers import AutoModelForCausalLM, AutoTokenizer, AutoConfig
 
-from utils.modify_arch.mspoe_models import MsPoELlamaForCausalLM, MsPoEGemmaForCausalLM, MsPoEQwen2ForCausalLM, \
+from utils.modify_arch.mspoe_models import MsPoELlamaForCausalLM, MsPoEQwen2ForCausalLM, \
     MsPoEMistralForCausalLM
 
 
@@ -22,8 +22,6 @@ def setup_models(args, attn_implementation="flash_attention_2"):
         print('Compress Ratio: from {} to {}'.format(config.compress_ratio_min, config.compress_ratio_max))
         if "mistral" in args.model_name.lower():
             Model = MsPoEMistralForCausalLM
-        elif "gemma" in args.model_name.lower():
-            Model = MsPoEGemmaForCausalLM
         elif "qwen" in args.model_name.lower():
             Model = MsPoEQwen2ForCausalLM
         else:
