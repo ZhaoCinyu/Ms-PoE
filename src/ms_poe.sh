@@ -17,7 +17,7 @@ CUDA_VISIBLE_DEVICES=0 python -u inference.py \
     --sample_num 5 \
     --answer_idx 1 \
     --enable_ms_poe \
-    --apply_layers "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30" \
+    --apply_layers "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31" \
     --compress_ratio_min 1 \
     --compress_ratio_max 1
 python -u utils/lost_in_the_middle/eval_qa_response.py --input-path $OUTPUTNAME
